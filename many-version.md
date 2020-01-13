@@ -50,6 +50,13 @@
 ![java-versions](java-versions.png)
 
 ---
+
+<!-- .slide: class="center" -->
+
+![java-versions-2](java-versions-2.png)
+
+---
+
 <!-- .slide: class="center" -->
 
 ## 同时有很多可选项

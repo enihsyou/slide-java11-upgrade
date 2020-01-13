@@ -37,6 +37,10 @@ String: `char[]` => `byte[]` (with encoding)
 
 <https://cr.openjdk.java.net/~pliden/slides/ZGC-FOSDEM-2018.pdf>
 
+---
+
+<div class="tweet" data-src="https://twitter.com/0xd33d33/status/1034722011032027136"></div>
+
 ------
 <!-- .slide: class="center" -->
 
