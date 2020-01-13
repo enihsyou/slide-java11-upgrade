@@ -126,12 +126,49 @@ for (var ch : chars) {
 var number;
 var someList = null;
 var isLongString = (String s) -> s.length() > 10;
+var a = 1, b = 2;
+var array = {1, 2, 3};
 ```
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ⚠️ `var` 不是关键字 即可以有 `var var = 1`  
 ⚠️ `var list = new ArrayList<>()` 会推断出Object
 <!-- .element: class="fragment" -->
+
+---
+
+### 特殊用法
+
+匿名对象 (Kotlin)
+
+```java
+var anonymous = new Object() {
+  void someMethod() {}
+};
+anonymous.someMethod();
+```
+
+---
+
+交集类型 (Scala)
+
+```java
+static <T extends Closeable & Appendable>
+T example(T supplier) throws IOException {
+  try (supplier) {
+    supplier.append('m');
+  }
+  return supplier;
+}
+
+static <T extends Closeable & Appendable>
+void usageExample() throws IOException {
+  // T example = example(new StringWriter());
+  var example = example(new StringWriter());
+  example(example);
+}
+```
+
 
 ---
 
@@ -175,7 +212,7 @@ types.stream()
     // this is fine, but we need @NonNull on the type
     .filter(type -> check(type))
     // in Java 10, we need to do this ~> ugh!
-    .filter((@NotNull Map<String, Integer> type) -> check(type))
+    .filter((Map<String, Integer> type) -> check(type))
     // in Java 11, we can do this ~> better
     .filter((@NotNull var type) -> check(type));
 ```

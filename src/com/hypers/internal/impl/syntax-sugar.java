@@ -8,15 +8,18 @@ import org.jetbrains.annotations.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.lang.StackWalker.Option;
 import java.lang.StackWalker.StackFrame;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.IntPredicate;
@@ -131,6 +134,11 @@ class Diamond {
 
     var var = 1;
     System.out.println(function.apply("在芽潮浩"));
+
+    var anonymous = new Object() {
+      void someMethod() {}
+    };
+    anonymous.someMethod();
 
     // var name = "Java 11";
     // assert name instanceof String;
@@ -352,5 +360,24 @@ class StackExample {
 
   public static void main(String[] args) {
     new StackExample().method1();
+  }
+}
+
+
+interface ClosableSupplier {
+
+  static <T extends Closeable & Appendable>
+  T example(T supplier) throws IOException {
+    try (supplier) {
+      supplier.append('m');
+    }
+    return supplier;
+  }
+
+  static <T extends Closeable & Appendable>
+  void exampleInLambda() throws IOException {
+    // T example = example(new StringWriter());
+    var example = example(new StringWriter());
+    example(example);
   }
 }
