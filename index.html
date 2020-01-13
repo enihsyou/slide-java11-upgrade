@@ -1,50 +1,179 @@
 <!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+  <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/tomorrow-night-eighties.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+  <!-- Printing and PDF exports -->
+  <script>
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+  document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
 
-		<script src="js/reveal.js"></script>
+      <section data-markdown class="center">
+        # Java 11 升级之路
+      </section>
+      <section data-markdown class="center">
+        ## 主要条目
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				hash: true,
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/highlight/highlight.js' },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
-		</script>
-	</body>
+        1. 好多版本
+        2. 好多功能
+        3. 好多模块
+        4. 好多依赖
+      </section>
+
+      <section data-markdown="many-version.md"
+               data-separator="^------$"
+               data-separator-vertical="^---$"
+               data-charset="utf-8">
+      </section>
+
+      <section data-markdown class="center">
+        ## Java 11带来的新特性
+
+        1. 提升编程幸福度的语法糖
+        3. 脚手架更多，搬砖更方便
+        4. 一点半点的性能提升
+        2. 大包化小、小包化了
+      </section>
+      <section data-markdown="syntax-sugar.md"
+               data-separator="^------$"
+               data-separator-vertical="^---$"
+               data-charset="utf-8">
+      </section>
+
+      <section data-markdown="more-libraries.md"
+               data-separator="^------$"
+               data-separator-vertical="^---$"
+               data-charset="utf-8">
+      </section>
+
+      <section data-markdown="performance-upgrade.md"
+               data-separator="^------$"
+               data-separator-vertical="^---$"
+               data-charset="utf-8">
+      </section>
+
+      <section data-markdown="jigsaw.md"
+               data-separator="^------$"
+               data-separator-vertical="^---$"
+               data-charset="utf-8">
+      </section>
+
+      <section data-markdown class="center">
+        ## 如何迁移
+
+        1. 直接更新JDK
+        2. 执行测试
+        3. 找回、替换被移除的组件
+        4. 修改代码
+      </section>
+      <section data-markdown="migrate-guide.md"
+               data-separator="^------$"
+               data-separator-vertical="^---$"
+               data-charset="utf-8">
+      </section>
+
+      <section data-markdown class="center">
+        # 谢谢
+
+        ##### & FAQ
+      </section>
+    </div>
+  </div>
+
+  <script src="js/reveal.js"></script>
+
+  <script>
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+
+    width: 1080,
+    height: 700,
+
+    // Display presentation control arrows
+    controls: true,
+
+    // Help the user learn the controls by providing hints, for example by
+    // bouncing the down arrow when they first encounter a vertical slide
+    controlsTutorial: true,
+
+    // Determines where controls appear, "edges" or "bottom-right"
+    controlsLayout: 'bottom-right',
+
+    // Visibility rule for backwards navigation arrows; "faded", "hidden"
+    // or "visible"
+    controlsBackArrows: 'faded',
+
+    // Display a presentation progress bar
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Add the current slide number to the URL hash so that reloading the
+    // page/copying the URL will return you to the same slide
+    hash: true,
+
+    // Push each slide change to the browser history. Implies `hash: true`
+    history: false,
+
+    // Vertical centering of slides
+    center: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags whether to include the current fragment in the URL,
+    // so that reloading brings you to the same fragment position
+    fragmentInURL: true,
+
+    // Hide cursor if inactive
+    hideInactiveCursor: true,
+
+    // Time before the cursor is hidden (in ms)
+    hideCursorTime: 3000,
+
+    // Transition style
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+    // Options which are passed into marked
+    // See https://marked.js.org/#/USING_ADVANCED.md#options
+    markdown: {
+      smartypants: true,
+    },
+
+    dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/highlight/highlight.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+    ],
+  });
+  </script>
+</body>
 </html>
