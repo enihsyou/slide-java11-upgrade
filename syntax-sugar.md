@@ -1,3 +1,27 @@
+## 在接口内定义方法
+
+- Java 7只允许 `public abstract` 方法
+
+- Java 8允许 `public static`, `public default`
+
+- Java 9允许 `private static`, `private method`
+
+```java
+public interface CustomCalculator {
+  default int addEvenNumbers(int... nums) {
+    return add(this::isEven, nums);
+  }
+  
+  private boolean isEven(int n) { return n % 2 == 0; }
+  
+  private static int add(IntPredicate predicate, int... nums) {
+    return IntStream.of(nums).filter(predicate).sum();
+  }
+}
+```
+
+------
+
 ## 变量定义
 
 假设我们有一个叫`Function`的泛型接口
@@ -7,7 +31,7 @@
 ```java
 interface Function<T, R> {
 
-  R apply(T t);
+  @NotNull R apply(@NotNull T t);
 }
 ```
 
@@ -143,9 +167,22 @@ var array = {1, 2, 3};
 
 ```java
 var anonymous = new Object() {
-  void someMethod() {}
+
+  void processFile() {
+    async.openFile(this::secondCallback);
+  }
+
+  void secondCallback(File file) {
+    // check file properties
+    async.processFile(this::thirdCallback);
+  }
+
+  void thirdCallback(File file) {
+    // do on file
+  }
 };
-anonymous.someMethod();
+
+anonymous.processFile();
 ```
 
 ---
@@ -154,23 +191,43 @@ anonymous.someMethod();
 
 ```java
 static <T extends Closeable & Appendable>
-T example(T supplier) throws IOException {
+T appendTo(T supplier) throws IOException {
   try (supplier) {
     supplier.append('m');
   }
   return supplier;
 }
 
-static <T extends Closeable & Appendable>
-void usageExample() throws IOException {
-  // T example = example(new StringWriter());
-  var example = example(new StringWriter());
-  example(example);
+
+static void myExample() throws IOException {
+  var example1 = appendTo((Closeable & Appendable) new StringWriter());
+  var example2 = appendTo(new StringWriter());
+  example1.close();
+  example2.close();
 }
 ```
 
+---
+<!-- .slide: class="center" -->
+
+```java
+Function<String, List<String>> function = s -> s
+    .chars()
+    .mapToObj(Character::toString)
+    .collect(Collectors.toList());
+var result = function.apply("😂你再说");
+
+// [?, ?, ?, ?, ?, ?, 说]
+```
+
+因为 Unicode 已经超过16bit的表示范围
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+![unicode-utf8](unicode-utf8.png)
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
+<!-- .slide: class="center" -->
 
 ```diff
 Function<String, List<String>> function = s -> s
@@ -179,26 +236,12 @@ Function<String, List<String>> function = s -> s
 -   .map(String::valueOf)
 +   .mapToObj(Character::toString)
     .collect(Collectors.toList());
-var result = function.apply("在芽潮浩");
+var result = function.apply("😂你再说");
 
-// [在, 芽, 潮, 浩]
+// [😂, 你, 再, 说]
 ```
 
-但是 Unicode 已经超过16bit的表示范围
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-```java
-Function<String, List<String>> function = s -> s
-    .chars()
-    .mapToObj(Character::toString)
-    .collect(Collectors.toList());
-var result = function.apply("在芽潮浩");
-
-// [在, ?, ?, ?, ?, ?, ?]
-```
-<!-- .element: class="fragment" data-fragment-index="1" -->
 <https://github.com/minimaxir/big-list-of-naughty-strings>
-<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 <!-- .slide: class="center" -->
@@ -215,6 +258,12 @@ types.stream()
     .filter((Map<String, Integer> type) -> check(type))
     // in Java 11, we can do this ~> better
     .filter((@NotNull var type) -> check(type));
+```
+
+💎菱形操作符(`<>`)也能在匿名类上使用
+
+```java
+Supplier<Integer> supplier = new Supplier<>() { ... };
 ```
 
 ------
@@ -281,30 +330,6 @@ Optional.<String>empty()
         () -> System.out.println("nothing get redirected"));
 ```
 <!-- .element: class="stretch" -->
-
-------
-
-## 在接口内定义方法
-
-- Java 7只允许 `public abstract` 方法
-
-- Java 8允许 `public static`, `public default`
-
-- Java 9允许 `private static`, `private method`
-
-```java
-public interface CustomCalculator {
-  default int addEvenNumbers(int... nums) {
-    return add(this::isEven, nums);
-  }
-  
-  private boolean isEven(int n) { return n % 2 == 0; }
-  
-  private static int add(IntPredicate predicate, int... nums) {
-    return IntStream.of(nums).filter(predicate).sum();
-  }
-}
-```
 
 ------
 

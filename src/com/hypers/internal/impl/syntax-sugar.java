@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -15,11 +16,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.IntPredicate;
@@ -36,15 +35,17 @@ class Diamond {
   }
 
   public static void main(String[] args) throws NoSuchFieldException {
-    java6();
-    java7();
-    java8();
-    java8_old();
-    java11();
-    java11_wrong();
+    var input = "😂你再说";
+
+    java6(input);
+    java7(input);
+    java8(input);
+    java8_old(input);
+    java11(input);
+    java11_wrong(input);
   }
 
-  private static void java6() {
+  private static void java6(String input) {
     Function<String, List<String>> function =
         new Function<String, List<String>>() {
           public List<String> apply(@NotNull String s) {
@@ -59,10 +60,10 @@ class Diamond {
           }
         };
 
-    System.out.println(function.apply("在芽潮浩"));
+    System.out.println(function.apply(input));
   }
 
-  private static void java7() {
+  private static void java7(String input) {
     Function<String, List<String>> function = new Function<String, List<String>>() {
       public List<String> apply(@NotNull String s) {
         List<String> strings = new ArrayList<String>();
@@ -76,10 +77,10 @@ class Diamond {
       }
     };
 
-    System.out.println(function.apply("在芽潮浩"));
+    System.out.println(function.apply(input));
   }
 
-  private static void java8_old() {
+  private static void java8_old(String input) {
     Function<String, List<String>> function = new Function<String, List<String>>() {
       public List<String> apply(@NotNull String s) {
         List<String> strings = new ArrayList<>();
@@ -100,31 +101,31 @@ class Diamond {
               .compose(codePointTo16Bit)
               .compose(codePointAt)
               .apply(offset);
-          var charOffset2 = codePointAt
-              .andThen(codePointTo16Bit)
-              .andThen(arrayToString)
-              .andThen(appendToList)
-              .apply(offset);
+          // var charOffset2 = codePointAt
+          //     .andThen(codePointTo16Bit)
+          //     .andThen(arrayToString)
+          //     .andThen(appendToList)
+          //     .apply(offset);
           offset += moveMetric.apply(charOffset);
         }
         return strings;
       }
     };
 
-    System.out.println(function.apply("在芽潮浩"));
+    System.out.println(function.apply(input));
   }
 
-  private static void java8() {
+  private static void java8(String input) {
     Function<String, List<String>> function = s -> s
         .codePoints()
         .mapToObj(Character::toChars)
         .map(String::valueOf)
         .collect(Collectors.toList());
 
-    System.out.println(function.apply("在芽潮浩"));
+    System.out.println(function.apply(input));
   }
 
-  private static void java11() {
+  private static void java11(String input) {
     Function<String, List<String>> function = (@NotNull var s) -> {
       var codePoints = s.codePoints();
       return codePoints
@@ -132,13 +133,26 @@ class Diamond {
           .collect(Collectors.toList());
     };
 
-    var var = 1;
-    System.out.println(function.apply("在芽潮浩"));
+    var          var   = 1;
+    List<String> apply = function.apply(input);
+    System.out.println(apply);
 
-    var anonymous = new Object() {
-      void someMethod() {}
-    };
-    anonymous.someMethod();
+    // var anonymous = new Object() {
+    //
+    //   void processFile() {
+    //     async.openFile(this::secondCallback);
+    //   }
+    //
+    //   void secondCallback(File file) {
+    //     // check file properties
+    //     async.processFile(this::thirdCallback);
+    //   }
+    //
+    //   void thirdCallback(File file) {
+    //     // do on file
+    //   }
+    // };
+    // anonymous.processFile();
 
     // var name = "Java 11";
     // assert name instanceof String;
@@ -150,15 +164,15 @@ class Diamond {
     // var number;
     // var someList = null;
     // var isLongString = (String s) -> s.length() > 10;
-  }？'
-  private static void java11_wrong() {
+  }
+
+  private static void java11_wrong(String input) {
     Function<String, List<String>> function = (@NotNull var s) -> s.chars()
         .mapToObj(Character::toString)
         .collect(Collectors.toList());
 
-    System.out.println(function.apply("在芽潮浩"));
+    System.out.println(function.apply(input));
   }
-
 
 }
 
@@ -366,17 +380,17 @@ class StackExample {
 interface ClosableSupplier {
 
   static <T extends Closeable & Appendable>
-  T example(T supplier) throws IOException {
+  T appendTo(T supplier) throws IOException {
     try (supplier) {
       supplier.append('m');
     }
     return supplier;
   }
 
-  static <T extends Closeable & Appendable>
-  void exampleInLambda() throws IOException {
-    // T example = example(new StringWriter());
-    var example = example(new StringWriter());
-    example(example);
+  static void myExample() throws IOException {
+    var example1 = appendTo((Closeable & Appendable) new StringWriter());
+    var example2 = appendTo(new StringWriter());
+    example1.close();
+    example2.close();
   }
 }

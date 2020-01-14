@@ -158,8 +158,8 @@ body {
 .reveal pre code {
   display: block;
   padding: 5px;
-  overflow: auto;
-  max-height: 400px;
+  overflow: visible;
+  max-height: 100%;
   word-wrap: normal; }
 
 .reveal table {

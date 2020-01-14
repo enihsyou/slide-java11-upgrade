@@ -20,6 +20,22 @@ public final class String {
 
 String: `char[]` => `byte[]` (with encoding)
 
+---
+
+### 性能测试
+
+创建了1千万个字符串，并且合并这些字符串。
+
+    Generated 10000000 strings in 854 ms.
+    Created string of length 488895 in 5130 ms.
+
+类似的，如果我们通过 -XX:-CompactStrings 参数禁用 Compact Strings 得出如下输出：
+
+    Generated 10000000 strings in 936 ms.
+    Created string of length 488895 in 9727 ms.
+
+<https://reionchan.github.io/2017/09/25/java-9-compact-string>
+
 ------
 
 <!-- .slide: class="center" -->

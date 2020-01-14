@@ -1,13 +1,3 @@
-## 许许多多的版本
-
-不是每年都有新版本
-
-- JDK 6: 2006-12，距离JDK5发布2年2个月
-- JDK 7: 2011-07，间隔4年8个月
-- JDK 8: 2014-03，间隔2年8个月
-- JDK 9: 2017-12，间隔3年6个月
-
----
 <!-- .slide: class="center" -->
 
 ## Java 平台的特点
@@ -17,6 +7,16 @@
 ### 安全
 
 ### 免费
+
+---
+## 许许多多的版本
+
+不是每年都有新版本
+
+- JDK 6: 2006-12，距离JDK5发布2年2个月
+- JDK 7: 2011-07，间隔4年8个月
+- JDK 8: 2014-03，间隔2年8个月
+- JDK 9: 2017-12，间隔3年6个月
 
 ---
 <!-- .slide: class="center" -->
@@ -45,22 +45,7 @@
 新功能一经完成便发布
 
 ---
-
-<!-- .slide: class="center" -->
-
-![java-versions-2](java-versions-2.png)
-
----
-
-<!-- .slide: class="center" -->
-
-## 同时有很多可选项
-
-- Orcale JDK
-- OpenJDK
-- AdoptOpenJDK
-- Azul
-- ...
+<!-- .slide: data-background-image="version-compare.png" data-background-size="contain" -->
 
 ---
 
@@ -77,6 +62,11 @@
   - 每6个月一个发行版
 
 ---
+<!-- .slide: class="center" -->
+
+![java-versions-2](java-versions-2.png)
+
+---
 
 ### 不再“免费”
 
@@ -91,9 +81,3 @@
   - 每三个月一次 总共两次
 
 🔖 DockerHub提供部署时所需的旧版本
-<!-- .element: class="fragment" -->
-
----
-
-![version-compare.png](version-compare.png)
-

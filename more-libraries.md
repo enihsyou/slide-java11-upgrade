@@ -99,4 +99,6 @@ StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE)
 - `InputStream.transferTo(OutputStream)`
 - 运行.java文件
 - JShell
+- 多 Java 版本的 JAR 支持
+- 支持响应式流API
 - ...
