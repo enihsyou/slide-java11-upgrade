@@ -150,8 +150,7 @@ class Diamond {
     // var number;
     // var someList = null;
     // var isLongString = (String s) -> s.length() > 10;
-  }
-
+  }？'
   private static void java11_wrong() {
     Function<String, List<String>> function = (@NotNull var s) -> s.chars()
         .mapToObj(Character::toString)

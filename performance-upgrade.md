@@ -1,5 +1,7 @@
 ## 字符串性能提升
 
+压缩字符串
+
 ```java
 public final class String {
     /**
@@ -20,11 +22,20 @@ String: `char[]` => `byte[]` (with encoding)
 
 ------
 
-## 垃圾收集器
+<!-- .slide: class="center" -->
+## 虚拟机性能提升
+
+- JEP-143 改善锁争用机制
+- JEP-197 代码分段缓存
+- JEP-310 应用类数据共享
+
+---
+
+### 垃圾收集器
 
 默认使用G1回收器
 
-- 并行的 Full GC
+- JEP-307 并行的 Full GC
 - 相比Java8 G1 和 并行 GC 分别有 16.1% 和 4.5% 的提升
 
 ![g1_on_jdk11](g1_on_jdk11.png)
