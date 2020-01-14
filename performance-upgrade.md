@@ -51,10 +51,17 @@ String: `char[]` => `byte[]` (with encoding)
 
 默认使用G1回收器
 
+![g1_region.png](g1_region.png)
+
+<https://tech.meituan.com/2016/09/23/g1.html>
+
+---
+
 ![how_g1_works](how_g1_works.png)
 
+- 更高的并行化
 - 可预测的停顿时间
-- 不产生内存碎片
+- 更少的内存碎片
 
 ---
 
