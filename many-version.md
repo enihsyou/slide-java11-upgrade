@@ -45,11 +45,6 @@
 新功能一经完成便发布
 
 ---
-<!-- .slide: class="center" -->
-
-![java-versions](java-versions.png)
-
----
 
 <!-- .slide: class="center" -->
 

@@ -35,6 +35,13 @@ String: `char[]` => `byte[]` (with encoding)
 
 默认使用G1回收器
 
+![how_g1_works](how_g1_works.png)
+
+- 可预测的停顿时间
+- 不产生内存碎片
+
+---
+
 - JEP-307 并行的 Full GC
 - 相比Java8 G1 和 并行 GC 分别有 16.1% 和 4.5% 的提升
 
@@ -52,11 +59,10 @@ String: `char[]` => `byte[]` (with encoding)
 
 <div class="tweet" data-src="https://twitter.com/0xd33d33/status/1034722011032027136"></div>
 
-------
-<!-- .slide: class="center" -->
+---
 
-## 安装包体积大幅下降
+![gc-benchmarks](gc-benchmarks.png)
 
-🔖 没有JRE 没有32位
+不断分配内存空间并且一同释放
 
-最小的HelloWorld可执行程序可以做到40MB
+<https://ionutbalosin.com/2019/12/jvm-garbage-collectors-benchmarks-report-19-12/>

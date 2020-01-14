@@ -45,3 +45,12 @@ module com.hypers.api {
 }
 ```
 <!-- .element: class="stretch" -->
+
+---
+<!-- .slide: class="center" -->
+
+## 安装包体积大幅下降
+
+🔖 没有JRE 没有32位
+
+最小的HelloWorld可执行程序可以做到40MB
