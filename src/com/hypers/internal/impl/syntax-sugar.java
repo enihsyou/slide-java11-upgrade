@@ -154,12 +154,12 @@ class Diamond {
     // };
     // anonymous.processFile();
 
-    // var name = "Java 11";
-    // assert name instanceof String;
-    // var chars = name.toCharArray();
-    // for (var ch : chars) {
-    //   System.out.println(ch);
-    // }
+    var name = "Java 11";
+    assert name instanceof String;
+    var chars = name.toCharArray();
+    for (var ch : chars) {
+      System.out.println(ch);
+    }
 
     // var number;
     // var someList = null;
